@@ -1,0 +1,25 @@
+const taskInput = document.getElementById('taskInput');
+const addTaskBtn = document.getElementById('addTaskBtn');
+const taskList = document.getElementById('taskList');
+
+addTaskBtn.addEventListener('click', addTask);
+
+function addTask() {
+    const taskText = taskInput.value.trim();
+
+    if (taskText !== '') {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <span>${taskText}</span>
+            <button class="deleteTaskBtn">Delete</button>
+        `;
+        taskList.appendChild(li);
+
+        const deleteBtn = li.querySelector('.deleteTaskBtn');
+        deleteBtn.addEventListener('click', () => {
+            taskList.removeChild(li);
+        });
+
+        taskInput.value = '';
+    }
+}
